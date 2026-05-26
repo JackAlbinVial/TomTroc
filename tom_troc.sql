@@ -2,16 +2,21 @@ Drop Database if exists `tom_troc`;
 Create Database if not exists `tom_troc`;
 Use `tom_troc`;
 
-Drop Table if exists `Utilisateur`;
-Create Table if not exists `Utilisateur` (
+Drop Table if exists `User`;
+Create Table if not exists `User` (
 `id` int NOT NULL AUTO_INCREMENT,
-`pseudo` varchar(255) NOT NULL,
-`email` varchar(255) NOT NULL,
-`motdepasse` varchar(255) NOT NULL,
-`image` varchar(255) NOT NULL,
+`role` int NOT NULL,
+`name` varchar(255) NOT NULL,
+`login` varchar(255) NOT NULL,
+`password` varchar(255) NOT NULL,
+`picture` varchar(255) NOT NULL,
 `date_creation` datetime NOT NULL,
 PRIMARY KEY (`id`)
 );
+
+INSERT INTO `user` (`id`, `role`, `name`, `login`, `password`, `picture`,`date_creation`) VALUES
+(1, 1, 'UserTest', 'user@test.fr', '$2y$10$OefkCWfcDo.GKgFS2qmFYuITgzdDsrBp67p2.IrJOutZ9ptcsKCb.', 'none', '2023-09-06 16:29:40'),
+(2, 0, 'AdminTest', 'Admin@test.fr', '$2y$10$OefkCWfcDo.GKgFS2qmFYuITgzdDsrBp67p2.IrJOutZ9ptcsKCb.', 'none', '2023-09-06 16:29:40');
 
 Drop Table if exists `Livre`;
 Create Table if not exists `Livre` (
