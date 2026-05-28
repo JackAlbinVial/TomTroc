@@ -18,7 +18,7 @@ class UserController
 
         // On vérifie que les données sont valides.
         if (empty($login) || empty($password)) {
-            throw new Exception("Tous les champs sont obligatoires. 1");
+            throw new Exception("Tous les champs sont obligatoires.");
         }
 
         // On vérifie que l'utilisateur existe.
@@ -88,39 +88,35 @@ class UserController
         $view->render("subscriptionForm");
     }
 /**
- * Connexion de l'utilisateur.
+ * Inscription de l'utilisateur.
  * @return void
  */
-    public function connectUser(): void
+    public function subscribeUser(): void
     {
 
         // On récupère les données du formulaire.
+        $name     = Utils::request("name");
         $login    = Utils::request("login");
         $password = Utils::request("password");
 
         // On vérifie que les données sont valides.
-        if (empty($login) || empty($password)) {
-            throw new Exception("Tous les champs sont obligatoires. 1");
+        if (empty($name) || empty($login) || empty($password)) {
+            throw new Exception("Tous les champs sont obligatoires.");
         }
 
-        // On vérifie que l'utilisateur existe.
+        // On vérifie que l'utilisateur n'existe pas déjà sinon on l'enregistre.
         $userManager = new UserManager();
         $user        = $userManager->getUserByLogin($login);
-        if (! $user) {
-            throw new Exception("L'utilisateur demandé n'existe pas.");
+        if (isset($user)) {
+            throw new Exception("L'adresse mail est déjà utilisée");
+        } else {
+            $user = $userManager->createUser([$name, $login, $password]);
         }
 
-        // On vérifie que le mot de passe est correct.
-        if (! password_verify($password, $user->getPassword())) {
-            $hash = password_hash($password, PASSWORD_DEFAULT);
-            throw new Exception("Le mot de passe est incorrect : $hash");
-        }
-
-        // On connecte l'utilisateur.
-        $_SESSION['user']     = $user;
-        $_SESSION['idUser']   = $user->getId();
-        $_SESSION['userRole'] = $user->getRole();
-
-        Utils::redirect("connectionForm");
+        // On connecte l'utilisateur via la redirection vers connectUser.
+        Utils::redirect("connectUser", [
+            'login'    => $login,
+            'password' => $password,
+        ]);
     }
 }
