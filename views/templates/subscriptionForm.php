@@ -4,7 +4,7 @@
  */
 ?>
 
-<div class="connection-form">
+<div class="subscription-form">
     <form action="index.php?action=subscribeUser" method="post" class="foldedCorner">
         <h2>Inscription</h2>
         <div class="formGrid">

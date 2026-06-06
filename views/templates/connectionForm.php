@@ -10,9 +10,6 @@
             <?php
                 if (isset($_SESSION['user'])) {
                     echo ' - connecté';
-                }
-                if (isset($_SESSION['userRole']) && $_SESSION['userRole'] === 0) {
-                    echo ' - Admin';
             }
             ?></h2>
         <div class="formGrid">
@@ -26,3 +23,4 @@
     <p>Pas de compte ?</p>
     <a href="index.php?action=subscriptionForm">Inscrivez-vous</a>
 </div>
+

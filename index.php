@@ -33,6 +33,11 @@ try {
             $userController = new UserController();
             $userController->displaySubscriptionForm();
             break;
+
+        case 'userProfile':
+            $userController = new UserController();
+            $userController->showProfile();
+            break;
     }
 } catch (Exception $e) {
     echo $e;

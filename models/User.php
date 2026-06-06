@@ -1,43 +1,16 @@
 <?php
 
 /**
- * Entité User : un user est défini par son id, un login et un password.
+ * Entité User, un user est défini par les champs :
+ * id, role, name, login, password, picture, date creation
  */
 class User extends AbstractEntity
 {
-    protected int $id;
-    protected int $role;
-    protected string $name;
-    protected string $login;
-    protected string $password;
-    protected string $picture;
-    protected ?DateTime $dateCreation = null;
-
-/**
- * Getter pour l'id.
- * @return int
- */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-/**
- * Setter pour le role.
- * @param int $role
- */public function setRole(int $role): void
-    {
-        $this->role = $role;
-    }
-
-/**
- * Getter pour le role.
- * @return int
- */
-    public function getRole(): int
-    {
-        return $this->role;
-    }
+    private string $name;
+    private string $login;
+    private string $password;
+    private string $picture;
+    private ?DateTime $dateCreation = null;
 
 /**
  * Setter pour le name.
@@ -53,7 +26,7 @@ class User extends AbstractEntity
  */
     public function getName(): string
     {
-        return $this->Name;
+        return $this->name;
     }
 
 /**
