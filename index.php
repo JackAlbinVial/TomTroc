@@ -48,6 +48,21 @@ try {
             $userController = new UserController();
             $userController->updateUserPhoto();
             break;
+
+        case 'showUpdateBookForm':
+            $userController = new UserController();
+            $userController->showUpdateBookForm();
+            break;
+
+        case 'deleteBook':
+            $userController = new UserController();
+            $userController->deleteBook();
+            break;
+
+        case 'updateLivre':
+            $userController = new UserController();
+            $userController->updateLivre();
+            break;
     }
 } catch (Exception $e) {
     echo $e;

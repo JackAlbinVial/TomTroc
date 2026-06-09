@@ -227,8 +227,90 @@ class UserController
             $filename
         );
 
-        // Rediriger
-        Utils::redirect("connectionForm");
+        // Rediriger vers le profile
+        Utils::redirect("userProfile");
+    }
+/**
+ * Affichage du formulaire d'ajout ou de modification d'un livre.
+ * @return void
+ */
+    public function showUpdateBookForm(): void
+    {
+        $this->checkIfUserIsConnected();
+
+        // On récupère l'id de l'article s'il existe.
+        $id = Utils::request("id", -1);
+
+        // On récupère l'article associé.
+        $livreManager = new LivreManager();
+        $livre        = $livreManager->getLivreById($id);
+
+        // Si l'article n'existe pas, on en crée un vide.
+        if (! $livre) {
+            $livre = new Livre();
+        }
+
+        // On affiche la page de modification de l'article.
+        $view = new View("Edition d'un livre");
+        $view->render("updateLivreForm", [
+            'livre' => $livre,
+        ]);
     }
 
+    /**
+     * Suppression d'un livre.
+     * @return void
+     */
+    public function deleteBook(): void
+    {
+        $this->checkIfUserIsConnected();
+
+        $id = Utils::request("id", -1);
+
+        // On supprime le livre.
+        $livreManager = new LivreManager();
+        $livreManager->deleteLivre($id);
+
+        // On redirige vers la page profile.
+        Utils::redirect("userProfile");
+    }
+
+    /**
+     * Ajout et modification d'un article.
+     * On sait si un article est ajouté car l'id vaut -1.
+     * @return void
+     */
+    public function updateArticle(): void
+    {
+        $this->checkIfUserIsConnected();
+
+        // On récupère les données du formulaire.
+        $id            = Utils::request("id", -1);
+        $titre         = Utils::request("titre");
+        $auteur        = Utils::request("auteur");
+        $description   = Utils::request("description");
+        $disponibilite = Utils::request("dispoSelect");
+
+        // On vérifie que les données sont valides.
+        if (empty($title) || empty($content)) {
+            throw new Exception("Tous les champs sont obligatoires. 2");
+        }
+
+        // On crée l'objet Article.
+        $livre = new Livre([
+            'id'             => $id,
+            'titre'          => $titre,
+            'auteur'         => $auteur,
+            'description'    => $description,
+            'disponibilite'  => $disponibilite,
+            'idProprietaire' => $_SESSION['idUser'],
+        ]);
+
+        // On ajoute l'article.
+        $livreManager = new LivreManager();
+        $livreManager->addOrUpdateLivre($livre);
+
+        // On redirige vers la page d'administration.
+        Utils::redirect("admin");
+    }
 }

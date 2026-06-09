@@ -68,11 +68,11 @@
                         <td class="col-description"><?php echo mb_strimwidth($livre->getDescription(), 0, 82, '...') ?></td>
                         <td class="col-available"><?php echo $livre->getDisponibilite() ?></td>
                         <td class="col-actions">
-                            <a class="submit" id="edit" href="index.php">
+                            <a class="submit" id="edit" href="index.php?action=showUpdateBookForm&id=<?php echo $livre->getId() ?>">
                                 <i class="fi fi-rr-pencil"></i>
                             </a>
-                            <a class="submit" id="delete" href="index.php"
-                                <?php echo Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer cet article ?") ?>>
+                            <a class="submit" id="delete" href="index.php?action=deleteBook&id=<?php echo $livre->getId() ?>"
+                                <?php echo Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce livre ?") ?>>
                                 <i class="fi fi-rr-trash"></i>
                             </a>
                         </td>
@@ -80,6 +80,6 @@
                 <?php }?>
             </tbody>
         </table>
-    <a class="submit" href="index.php?action=showUpdateArticleForm">Ajouter un article</a>
+    <a class="submit" href="index.php?action=showUpdateBookForm" class="ajoutLivre">Ajouter un livre</a>
     </div>
 </div>

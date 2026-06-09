@@ -6,13 +6,13 @@
  */
 class Livre extends AbstractEntity
 {
-    private string $photo        = "";
-    private string $titre        = "";
-    private string $auteur       = "";
-    private string $description  = "";
-    private bool $disponibilite  = false;
-    private ?DateTime $dateAjout = null;
-    private int $idProprietaire  = 0;
+    private string $photo         = "";
+    private string $titre         = "";
+    private string $auteur        = "";
+    private string $description   = "";
+    private string $disponibilite = "";
+    private ?DateTime $dateAjout  = null;
+    private int $idProprietaire   = 0;
 
     /**
      * Setter pour la photo.
@@ -88,9 +88,9 @@ class Livre extends AbstractEntity
 
     /**
      * Setter pour la disponibilite.
-     * @param bool $disponibilite
+     * @param string $disponibilite
      */
-    public function setDisponibilite(bool $disponibilite): void
+    public function setDisponibilite(string $disponibilite): void
     {
         $this->disponibilite = $disponibilite;
     }
@@ -101,13 +101,7 @@ class Livre extends AbstractEntity
      */
     public function getDisponibilite(): string
     {
-        $disponibilite = $this->disponibilite;
-
-        if ($disponibilite) {
-            return 'disponible';
-        } else {
-            return 'non dispo.';
-        }
+        return $this->disponibilite;
     }
 
     /**

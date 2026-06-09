@@ -25,17 +25,17 @@ Create Table if not exists `Livre` (
 `titre` varchar(255) NOT NULL,
 `auteur` varchar(255) NOT NULL,
 `description` text NOT NULL,
-`disponibilite` boolean,
+`disponibilite` varchar(13) NOT NULL,
 `dateAjout` datetime NOT NULL,
 `idProprietaire` int references User.id,
 PRIMARY KEY (`id`)
 );
 
 INSERT INTO `Livre` (`id`,`photo`,`titre`,`auteur`,`description`,`disponibilite`,`dateAjout`,`idProprietaire`) VALUES
-(1,'Kinkfolk_Table.jpg','Kinkfolk Table','Nathan Williams','LoremIpsum Dolor Sit Amet', 1,'2025-06-06 16:29:40', 1),
-(2,'Kinkfolk_Table.jpg','Kinkfolk Table','Nathan Williams','LoremIpsum Dolor Sit Amet', 1,'2025-06-06 16:29:40', 1),
-(3,'Kinkfolk_Table.jpg','Kinkfolk Table','Nathan Williams','LoremIpsum Dolor Sit Amet', 1,'2025-06-06 16:29:40', 1),
-(4,'Kinkfolk_Table.jpg','Kinkfolk Table','Nathan Williams','LoremIpsum Dolor Sit Amet', 1,'2025-06-06 16:29:40', 1);
+(1,'Kinkfolk_Table.jpg','Kinkfolk Table','Nathan Williams','LoremIpsum Dolor Sit Amet', 'disponible','2025-06-06 16:29:40', 1),
+(2,'Kinkfolk_Table.jpg','Kinkfolk Table','Nathan Williams','LoremIpsum Dolor Sit Amet', 'disponible','2025-06-06 16:29:40', 1),
+(3,'Kinkfolk_Table.jpg','Kinkfolk Table','Nathan Williams','LoremIpsum Dolor Sit Amet', 'disponible','2025-06-06 16:29:40', 1),
+(4,'Kinkfolk_Table.jpg','Kinkfolk Table','Nathan Williams','LoremIpsum Dolor Sit Amet', 'disponible','2025-06-06 16:29:40', 1);
 
 Drop Table if exists `Message`;
 Create Table if not exists `Message` (
