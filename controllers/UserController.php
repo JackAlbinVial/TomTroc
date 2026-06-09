@@ -31,7 +31,7 @@ class UserController
         // On vérifie que le mot de passe est correct.
         if (! password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            throw new Exception("Le mot de passe est incorrect");
+            throw new Exception("Le mot de passe est incorrect" . $hash);
         }
 
         // On connecte l'utilisateur.
@@ -148,4 +148,87 @@ class UserController
             'countLivre' => $countLivre,
         ]);
     }
+
+    /**
+     * Édition de l'utilisateur.
+     * @return void
+     */
+    public function editUser(): void
+    {
+        // On récupère les données du formulaire.
+        $nameForm     = Utils::request("name");
+        $loginForm    = Utils::request("login");
+        $passwordForm = Utils::request("password");
+
+        // On vérifie que l'utilisateur n'existe pas déjà sinon on l'enregistre.
+        $userManager = new UserManager;
+        $user        = $userManager->getUserById($_SESSION['idUser']);
+
+        // On récupère les données du user.
+        $nameUser     = $user->getName();
+        $loginUser    = $user->getLogin();
+        $passwordUser = $user->getPassword();
+
+        // On hash le passwordForm s'il a été modifié, on y enregistre le password bdd sinon
+        if ($passwordForm) {
+            $passwordHash = password_hash($passwordForm, PASSWORD_DEFAULT);
+        } else {
+            $passwordHash = $passwordUser;
+        }
+
+        // On compare les valeurs, on les enregistre en cas de changements,
+        // On enregistre les valeurs de la bdd sinon.
+        $name     = ($nameForm != $nameUser) ? $nameForm : $nameUser;
+        $login    = ($loginForm != $loginUser) ? $loginForm : $loginUser;
+        $password = ($passwordHash != $passwordUser) ? $passwordHash : $passwordUser;
+
+        $user = $userManager->editUser([$_SESSION['idUser'], $name, $login, $password]);
+
+        // On redirige vers la page profile.
+        Utils::redirect("userProfile");
+    }
+
+    /**
+     * Mise à jour de la photo de l'utilisateur.
+     * @return void
+     */
+    public function updateUserPhoto(): void
+    {
+        // On vérifie qu'il n'y a aucune erreur
+        if ($_FILES['photo']['error']) {
+            throw new Exception("Erreur lors du upload");
+        }
+
+        // On vérifier le type de fichier que l'utilisateur tente d'upload
+        $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
+        if (! in_array($_FILES['photo']['type'], $allowedTypes)) {
+            throw new Exception("Format non autorisé");
+        }
+
+        // On vérifie la taille (max 5MB)
+        if ($_FILES['photo']['size'] > 5 * 1024 * 1024) {
+            throw new Exception("Fichier trop volumineux");
+        }
+
+        // On génére un nom unique
+        $filename   = uniqid() . '_' . basename($_FILES['photo']['name']);
+        $uploadDir  = './pictures/users/';
+        $uploadPath = $uploadDir . $filename;
+
+        // On déplace le fichier
+        if (! move_uploaded_file($_FILES['photo']['tmp_name'], $uploadPath)) {
+            throw new Exception("Erreur lors de la sauvegarde");
+        }
+
+        // On met à jour en BDD
+        $userManager = new UserManager;
+        $user        = $userManager->updatePhoto(
+            $_SESSION['idUser'],
+            $filename
+        );
+
+        // Rediriger
+        Utils::redirect("connectionForm");
+    }
+
 }

@@ -9,9 +9,18 @@
 <div class="Compte">
     <div class="upperSection">
         <div class="blocDroit">
-            <div class="image" >
+            <div class="image">
                 <img src="./pictures/users/<?php echo $user->getPicture(); ?>" style="height:150px;"/>
+
+                <form action="index.php?action=updateUserPhoto" method="POST" enctype="multipart/form-data" class="photo">
+                    <label for="photo" class="edit-link">
+                        <i class="fi fi-rr-pencil"></i>Modifier
+                    </label>
+                    <input type="file" name="photo" id="photo" accept="image/*" required>
+                    <button type="submit" >Valider</button>
+                </form>
             </div>
+
             <div class="info">
                 <h2><?php echo $user->getName(); ?></h2>
                 <p class="seniority"><?php echo $userDate ?></p>
@@ -29,7 +38,7 @@
                     <label for="login">Adresse email</label>
                     <input type="email" name="login" id="login" value="<?php echo $user->getLogin(); ?>">
                     <label for="password">Mot de passe</label>
-                    <input type="password" name="password" id="password" value="········">
+                    <input type="password" name="password" id="password" placeholder="········">
                     <label for="name">Pseudo</label>
                     <input type="text" name="name" id="name" value="<?php echo $user->getName(); ?>">
                     <button class="submit">Enregistrer</button>

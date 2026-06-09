@@ -6,12 +6,7 @@
 
 <div class="connection-form">
     <form action="index.php?action=connectUser" method="post" class="foldedCorner">
-        <h2>Connexion
-            <?php
-                if (isset($_SESSION['user'])) {
-                    echo ' - connecté';
-            }
-            ?></h2>
+        <h2>Connexion</h2>
         <div class="formGrid">
             <label for="login">Adresse email</label>
             <input type="email" name="login" id="login" required>
@@ -23,4 +18,3 @@
     <p>Pas de compte ?</p>
     <a href="index.php?action=subscriptionForm">Inscrivez-vous</a>
 </div>
-

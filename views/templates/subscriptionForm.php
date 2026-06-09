@@ -14,7 +14,7 @@
             <input type="email" name="login" id="login" required>
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password" required>
-            <button class="submit">S'inscrire'</button>
+            <button class="submit">S'inscrire</button>
         </div>
     </form>
     <p>Déjà inscrit ?</p>

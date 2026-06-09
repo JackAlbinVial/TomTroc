@@ -14,6 +14,11 @@ try {
             $userController->connectUser();
             break;
 
+        case 'editUser':
+            $userController = new UserController();
+            $userController->editUser();
+            break;
+
         case 'disconnectUser':
             $userController = new UserController();
             $userController->disconnectUser();
@@ -37,6 +42,11 @@ try {
         case 'userProfile':
             $userController = new UserController();
             $userController->showProfile();
+            break;
+
+        case 'updateUserPhoto':
+            $userController = new UserController();
+            $userController->updateUserPhoto();
             break;
     }
 } catch (Exception $e) {
