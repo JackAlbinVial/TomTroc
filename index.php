@@ -3,7 +3,7 @@
 require_once 'config/config.php';
 require_once 'config/autoload.php';
 
-$action = Utils::request('action', 'connectionForm');
+$action = Utils::request('action', 'home');
 
 try {
     // Pour chaque action, on appelle le bon contrôleur et la bonne méthode.
@@ -62,6 +62,21 @@ try {
         case 'updateLivre':
             $userController = new UserController();
             $userController->updateLivre();
+            break;
+
+        case 'home':
+            $livreController = new LivreController();
+            $livreController->showHome();
+            break;
+
+        case 'book':
+            $livreController = new LivreController();
+            $livreController->showBooks();
+            break;
+
+        case 'searchBook':
+            $livreController = new LivreController();
+            $livreController->searchBooks();
             break;
     }
 } catch (Exception $e) {

@@ -38,7 +38,7 @@ class UserController
         $_SESSION['user']   = $user;
         $_SESSION['idUser'] = $user->getId();
 
-        Utils::redirect("connectionForm");
+        Utils::redirect("userProfile");
     }
 
 /**
@@ -74,7 +74,7 @@ class UserController
         unset($_SESSION['idUser']);
 
         // On redirige vers la page d'accueil.
-        Utils::redirect("connectionForm");
+        Utils::redirect("home");
     }
 
 /**
@@ -241,11 +241,11 @@ class UserController
         // On récupère l'id de l'article s'il existe.
         $id = Utils::request("id", -1);
 
-        // On récupère l'article associé.
+        // On récupère le livre associé.
         $livreManager = new LivreManager();
         $livre        = $livreManager->getLivreById($id);
 
-        // Si l'article n'existe pas, on en crée un vide.
+        // Si le livre n'existe pas, on en crée un vide.
         if (! $livre) {
             $livre = new Livre();
         }

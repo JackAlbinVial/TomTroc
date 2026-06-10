@@ -6,13 +6,14 @@
  */
 class Livre extends AbstractEntity
 {
-    private string $photo         = "";
-    private string $titre         = "";
-    private string $auteur        = "";
-    private string $description   = "";
-    private string $disponibilite = "";
-    private ?DateTime $dateAjout  = null;
-    private int $idProprietaire   = 0;
+    private string $photo            = "none.png";
+    private string $titre            = "";
+    private string $auteur           = "";
+    private string $description      = "";
+    private string $disponibilite    = "";
+    private ?DateTime $dateAjout     = null;
+    private int $idProprietaire      = 0;
+    private string $proprietaireName = "";
 
     /**
      * Setter pour la photo.
@@ -142,6 +143,24 @@ class Livre extends AbstractEntity
     public function getIdProprietaire(): int
     {
         return $this->idProprietaire;
+    }
+
+    /**
+     * Setter pour la photo.
+     * @param string $proprietaireName
+     */
+    public function setProprietaireName(string $proprietaireName): void
+    {
+        $this->proprietaireName = $proprietaireName;
+    }
+
+    /**
+     * Getter pour la photo.
+     * @param string $proprietaireName
+     */
+    public function getProprietaireName(): string
+    {
+        return $this->proprietaireName;
     }
 
 }

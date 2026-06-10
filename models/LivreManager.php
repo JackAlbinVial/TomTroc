@@ -5,15 +5,15 @@
  */
 class LivreManager extends AbstractEntityManager
 {
-    /**
-     * Récupère tous les livres disponibles.
-     * @return array : un tableau d'objets Livre.
-     */
-    public function getAllLivresAvailable(): array
+/**
+ * Récupère tous les livres.
+ * @return array : un tableau d'objets Livre.
+ */
+    public function getAllLivres(): array
     {
-        $sql = "SELECT Livre.*
+        $sql = "SELECT Livre.*, User.name AS proprietaireName
                 FROM Livre
-                WHERE Livre.disponibilite = TRUE
+                JOIN User ON Livre.idProprietaire = user.id
                 ORDER BY Livre.dateAjout";
 
         $result = $this->db->query($sql);
@@ -24,11 +24,31 @@ class LivreManager extends AbstractEntityManager
         return $livres;
     }
 
-    /**
-     * Récupère tous les livres d'un utilisateur.
-     * @param int $idUser
-     * @return array : un tableau d'objets Livre.
-     */
+/**
+ * Récupère tous les livres publié récemment.
+ * @return array : un tableau d'objets Livre.
+ */
+    public function getLastLivres(): array
+    {
+        $sql = "SELECT Livre.*, User.name AS proprietaireName
+                FROM Livre
+                JOIN User ON Livre.idProprietaire = user.id
+                ORDER BY Livre.dateAjout DESC
+                LIMIT 4";
+
+        $result = $this->db->query($sql);
+        $livres = [];
+        while ($livre = $result->fetch()) {
+            $livres[] = new Livre($livre);
+        }
+        return $livres;
+    }
+
+/**
+ * Récupère tous les livres d'un utilisateur.
+ * @param int $idUser
+ * @return array : un tableau d'objets Livre.
+ */
     public function getAllLivresByIdUser(int $idUser): array
     {
         $sql = "SELECT Livre.*
@@ -44,11 +64,11 @@ class LivreManager extends AbstractEntityManager
         return $livres;
     }
 
-    /**
-     * Compte tous les livres d'un utilisateur.
-     * @param int $idUser
-     * @return int :le nombre de Livres.
-     */
+/**
+ * Compte tous les livres d'un utilisateur.
+ * @param int $idUser
+ * @return int :le nombre de Livres.
+ */
     public function countAllLivresByUser(int $idUser): int
     {
         $sql = "SELECT COUNT(*)
@@ -62,11 +82,11 @@ class LivreManager extends AbstractEntityManager
         return (int) $row['COUNT(*)'];
     }
 
-    /**
-     * Récupère un livre par son id.
-     * @param int $id : l'id du livre.
-     * @return Livre|null : un objet Livre ou null si le livre n'existe pas.
-     */
+/**
+ * Récupère un livre par son id.
+ * @param int $id : l'id du livre.
+ * @return Livre|null : un objet Livre ou null si le livre n'existe pas.
+ */
     public function getLivreById(int $id): ?Livre
     {
         $sql    = "SELECT * FROM Livre WHERE id = :id";
@@ -78,11 +98,11 @@ class LivreManager extends AbstractEntityManager
         return null;
     }
 
-    /**
-     * Modifie un livre.
-     * @param Livre $livre : livre à modifier.
-     * @return void
-     */
+/**
+ * Modifie un livre.
+ * @param Livre $livre : livre à modifier.
+ * @return void
+ */
     public function updateLivre(Livre $livre): void
     {
         $sql = "UPDATE livre
@@ -103,11 +123,11 @@ class LivreManager extends AbstractEntityManager
         ]);
     }
 
-    /**
-     * Ajoute ou modifie un livre.
-     * @param Livre $livre : le livre à ajouter ou modifier.
-     * @return void
-     */
+/**
+ * Ajoute ou modifie un livre.
+ * @param Livre $livre : le livre à ajouter ou modifier.
+ * @return void
+ */
     public function addOrUpdateLivre(Livre $livre): void
     {
         if ($livre->getId() == -1) {
@@ -117,11 +137,11 @@ class LivreManager extends AbstractEntityManager
         }
     }
 
-    /**
-     * Ajoute un livre.
-     * @param Livre $livre : le livre à ajouter.
-     * @return void
-     */
+/**
+ * Ajoute un livre.
+ * @param Livre $livre : le livre à ajouter.
+ * @return void
+ */
     public function addLivre(Livre $livre): void
     {
         $sql = "INSERT
@@ -137,11 +157,11 @@ class LivreManager extends AbstractEntityManager
         ]);
     }
 
-    /**
-     * Supprime un livre.
-     * @param int $id : l'id du livre à supprimer.
-     * @return void
-     */
+/**
+ * Supprime un livre.
+ * @param int $id : l'id du livre à supprimer.
+ * @return void
+ */
     public function deleteLivre(int $id): void
     {
         $sql = "DELETE FROM Livre WHERE id = :id";
