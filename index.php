@@ -78,6 +78,16 @@ try {
             $livreController = new LivreController();
             $livreController->searchBooks();
             break;
+
+        case 'detailBook':
+            $livreController = new LivreController();
+            $livreController->detailBook();
+            break;
+
+        case 'owner':
+            $userController = new UserController();
+            $userController->showPublicProfile();
+            break;
     }
 } catch (Exception $e) {
     echo $e;

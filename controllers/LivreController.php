@@ -45,4 +45,27 @@ class LivreController
         $view = new View("Nos Livres");
         $view->render("allLivre", ['livres' => $livres]);
     }
+
+/**
+ * Affiche la page détail d'un livre.
+ * @return void
+ */
+    public function detailBook(): void
+    {
+        $id = Utils::request("id", -1);
+
+        // On trouve le livre.
+        $livreManager = new LivreManager();
+        $livre        = $livreManager->getLivreById($id);
+
+        // On trouve le proprietaire
+        $userManager = new UserManager();
+        $user        = $userManager->getUserById($livre->getIdProprietaire());
+
+        $view = new View("Fiche de lecture");
+        $view->render("detailLivre", [
+            'livre' => $livre,
+            'user'  => $user,
+        ]);
+    }
 }

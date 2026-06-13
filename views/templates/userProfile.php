@@ -79,6 +79,6 @@
                 <?php }?>
             </tbody>
         </table>
-    <a class="submit" href="index.php?action=showUpdateBookForm" class="ajoutLivre">Ajouter un livre</a>
+    <a href="index.php?action=showUpdateBookForm" class="ajoutLivre">Ajouter un livre</a>
     </div>
 </div>

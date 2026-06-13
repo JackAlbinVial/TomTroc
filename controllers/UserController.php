@@ -127,7 +127,7 @@ class UserController
     }
 
 /**
- * Affiche la page profile de l'utilisateur
+ * Affiche la page profile de l'utilisateur connecté
  * @return void
  */
     public function showProfile(): void
@@ -156,10 +156,10 @@ class UserController
         ]);
     }
 
-    /**
-     * Édition de l'utilisateur.
-     * @return void
-     */
+/**
+ * Édition de l'utilisateur.
+ * @return void
+ */
     public function editUser(): void
     {
         // On récupère les données du formulaire.
@@ -199,10 +199,10 @@ class UserController
         Utils::redirect("userProfile");
     }
 
-    /**
-     * Mise à jour de la photo de l'utilisateur.
-     * @return void
-     */
+/**
+ * Mise à jour de la photo de l'utilisateur.
+ * @return void
+ */
     public function updateUserPhoto(): void
     {
         // On vérifie qu'il n'y a aucune erreur
@@ -241,6 +241,7 @@ class UserController
         // Rediriger vers le profile
         Utils::redirect("userProfile");
     }
+
 /**
  * Affichage du formulaire d'ajout ou de modification d'un livre.
  * @return void
@@ -268,14 +269,16 @@ class UserController
         ]);
     }
 
-    /**
-     * Suppression d'un livre.
-     * @return void
-     */
+/**
+ * Suppression d'un livre.
+ * @return void
+ */
     public function deleteBook(): void
     {
+        // On vérifie si l'utilisateur est connecté
         $this->checkIfUserIsConnected();
 
+        // On récupère l'id de l'url
         $id = Utils::request("id", -1);
 
         // On supprime le livre.
@@ -286,11 +289,11 @@ class UserController
         Utils::redirect("userProfile");
     }
 
-    /**
-     * Ajout et modification d'un article.
-     * On sait si un article est ajouté car l'id vaut -1.
-     * @return void
-     */
+/**
+ * Ajout et modification d'un article.
+ * On sait si un article est ajouté car l'id vaut -1.
+ * @return void
+ */
     public function updateLivre(): void
     {
         $this->checkIfUserIsConnected();
@@ -350,5 +353,36 @@ class UserController
 
         // On redirige vers la page d'administration.
         Utils::redirect("userProfile");
+    }
+
+/**
+ * Affiche la page profile public d'un utilisateur
+ * @return void
+ */
+    public function showPublicProfile(): void
+    {
+        // On récupère l'id de l'utilisateur
+        $idUser = Utils::request("id");
+
+        // On récupère les livres dans un tableau.
+        $livreManager = new LivreManager();
+        $livres       = $livreManager->getAllLivresByIdUser($idUser);
+
+        // On compte les livres de l'utilisateur.
+        $countLivre = $livreManager->countAllLivresByUser($idUser);
+
+        // On récupère les infos de l'utilisateur.
+        $userManager = new UserManager;
+        $user        = $userManager->getUserById($idUser);
+        $userDate    = $userManager->getUserSeniorityById($idUser);
+
+        // On affiche la page de profil.
+        $view = new View("Profile");
+        $view->render("publicProfile", [
+            'livres'     => $livres,
+            'user'       => $user,
+            'userDate'   => $userDate,
+            'countLivre' => $countLivre,
+        ]);
     }
 }
