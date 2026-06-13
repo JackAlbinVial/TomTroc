@@ -3,7 +3,8 @@
  * Template du formulaire d'update/creation d'un livre.
  */
 ?>
-<h2><?php echo $livre->getId() == -1 ? "Création d'un livre" : "Modification les informations" ?></h2>
+<a href="index.php?action=userProfile">← Retour</a>
+<h2><?php echo $livre->getId() == -1 ? "Création d'un livre" : "Modifier les informations" ?></h2>
 
 <form action="index.php" method="post" enctype="multipart/form-data" class="infoLivre">
     <div class="formGridGauche">

@@ -10,7 +10,7 @@
 
     <div class="livreAjouter">
         <?php foreach ($livres as $livre) {?>
-            <a href="#">
+            <a href="index.php?action=detailBook&id=<?php echo $livre->getId() ?>">
                 <article class="card" style="height:250px; width: 50%;">
                     <img src="./pictures/books/<?php echo $livre->getPhoto() ?>" alt="Image d'un livre"/>
                     <div class="card-content">
