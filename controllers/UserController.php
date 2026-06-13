@@ -21,6 +21,9 @@ class UserController
             throw new Exception("Tous les champs sont obligatoires.");
         }
 
+        //On nettoie les donnée avant de les envoyer
+        $login = Utils::clean($login);
+
         // On vérifie que l'utilisateur existe.
         $userManager = new UserManager();
         $user        = $userManager->getUserByLogin($login);
@@ -31,7 +34,7 @@ class UserController
         // On vérifie que le mot de passe est correct.
         if (! password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            throw new Exception("Le mot de passe est incorrect" . $hash);
+            throw new Exception("Le mot de passe est incorrect");
         }
 
         // On connecte l'utilisateur.
@@ -103,6 +106,10 @@ class UserController
             throw new Exception("Tous les champs sont obligatoires.");
         }
 
+        //On nettoie les données
+        $name  = Utils::clean($name);
+        $login = Utils::clean($login);
+
         // On vérifie que l'utilisateur n'existe pas déjà sinon on l'enregistre.
         $userManager = new UserManager();
         $user        = $userManager->getUserByLogin($login);
@@ -159,6 +166,10 @@ class UserController
         $nameForm     = Utils::request("name");
         $loginForm    = Utils::request("login");
         $passwordForm = Utils::request("password");
+
+        // On nettoie les données du formulaire.
+        $nameForm  = Utils::clean($nameForm);
+        $loginForm = Utils::clean($loginForm);
 
         // On vérifie que l'utilisateur n'existe pas déjà sinon on l'enregistre.
         $userManager = new UserManager;
@@ -238,7 +249,7 @@ class UserController
     {
         $this->checkIfUserIsConnected();
 
-        // On récupère l'id de l'article s'il existe.
+        // On récupère l'id du livre s'il existe.
         $id = Utils::request("id", -1);
 
         // On récupère le livre associé.
@@ -280,7 +291,7 @@ class UserController
      * On sait si un article est ajouté car l'id vaut -1.
      * @return void
      */
-    public function updateArticle(): void
+    public function updateLivre(): void
     {
         $this->checkIfUserIsConnected();
 
@@ -291,14 +302,41 @@ class UserController
         $description   = Utils::request("description");
         $disponibilite = Utils::request("dispoSelect");
 
-        // On vérifie que les données sont valides.
-        if (empty($title) || empty($content)) {
-            throw new Exception("Tous les champs sont obligatoires. 2");
+        //On nettoie les données
+        $titre       = Utils::clean($titre);
+        $auteur      = Utils::clean($auteur);
+        $description = Utils::clean($description);
+
+        // On vérifie qu'il n'y a aucune erreur pour la photo
+        if ($_FILES['photoLivre']['error']) {
+            throw new Exception("Erreur lors du upload");
+        }
+
+        // On vérifier le type de fichier que l'utilisateur tente d'upload
+        $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
+        if (! in_array($_FILES['photoLivre']['type'], $allowedTypes)) {
+            throw new Exception("Format non autorisé");
+        }
+
+        // On vérifie la taille (max 5MB)
+        if ($_FILES['photoLivre']['size'] > 5 * 1024 * 1024) {
+            throw new Exception("Fichier trop volumineux");
+        }
+
+        // On génére un nom unique
+        $filename   = uniqid() . '_' . basename($_FILES['photoLivre']['name']);
+        $uploadDir  = './pictures/books/';
+        $uploadPath = $uploadDir . $filename;
+
+        // On déplace le fichier
+        if (! move_uploaded_file($_FILES['photoLivre']['tmp_name'], $uploadPath)) {
+            throw new Exception("Erreur lors de la sauvegarde");
         }
 
         // On crée l'objet Article.
         $livre = new Livre([
             'id'             => $id,
+            'photo'          => $filename,
             'titre'          => $titre,
             'auteur'         => $auteur,
             'description'    => $description,
@@ -306,11 +344,11 @@ class UserController
             'idProprietaire' => $_SESSION['idUser'],
         ]);
 
-        // On ajoute l'article.
+        // On ajoute le livre.
         $livreManager = new LivreManager();
         $livreManager->addOrUpdateLivre($livre);
 
         // On redirige vers la page d'administration.
-        Utils::redirect("admin");
+        Utils::redirect("userProfile");
     }
 }

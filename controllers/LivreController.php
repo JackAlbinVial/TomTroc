@@ -32,13 +32,15 @@ class LivreController
     }
 
 /**
- * Affiche la page Nos Livres à l'échange.
+ * Fonction recherche du formulaire la page Nos Livres à l'échange.
  * @return void
  */
     public function searchBooks(): void
     {
+        $search = Utils::request("search");
+
         $livreManager = new LivreManager();
-        $livres       = $livreManager->getAllLivres();
+        $livres       = $livreManager->searchLivres($search);
 
         $view = new View("Nos Livres");
         $view->render("allLivre", ['livres' => $livres]);

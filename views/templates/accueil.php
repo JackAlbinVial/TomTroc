@@ -24,7 +24,7 @@
     <div class="livreAjouter">
         <?php foreach ($livres as $livre) {?>
             <a href="#">
-                <article class="card">
+                <article class="card" style="height:250px;">
                     <img src="./pictures/books/<?php echo $livre->getPhoto() ?>" alt="Image d'un livre"/>
                     <div class="card-content">
                         <div class="card-txt">

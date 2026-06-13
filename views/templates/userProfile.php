@@ -16,8 +16,7 @@
                     <label for="photo" class="edit-link">
                         <i class="fi fi-rr-pencil"></i>Modifier
                     </label>
-                    <input type="file" name="photo" id="photo" accept="image/*" required>
-                    <button type="submit" >Valider</button>
+                    <input type="file" name="photo" id="photo" accept="image/*" onchange="this.form.submit()" required>
                 </form>
             </div>
 

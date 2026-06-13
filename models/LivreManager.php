@@ -110,7 +110,7 @@ class LivreManager extends AbstractEntityManager
                     titre = :titre,
                     auteur = :auteur,
                     description = :description,
-                    disponibilite = :disponibilite,
+                    disponibilite = :disponibilite
                 WHERE id = :id";
 
         $this->db->query($sql, [
@@ -166,5 +166,30 @@ class LivreManager extends AbstractEntityManager
     {
         $sql = "DELETE FROM Livre WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
+    }
+
+/**
+ * Récupère tous les livres d'un utilisateur.
+ * @param string $search : la donnée nettoyée reçue du formulaire de recherche
+ * @return array : un tableau d'objets Livre.
+ */
+    public function searchLivres(string $search): array
+    {
+        $sql = "SELECT Livre.*, User.name AS proprietaireName
+                FROM Livre
+                JOIN User ON Livre.idProprietaire = User.id
+                WHERE Livre.titre LIKE :search
+                OR Livre.auteur LIKE :search
+                OR Livre.description LIKE :search
+                ORDER BY Livre.dateAjout DESC";
+
+        $search = '%' . $search . '%';
+
+        $result = $this->db->query($sql, ['search' => $search]);
+        $livres = [];
+        while ($livre = $result->fetch()) {
+            $livres[] = new Livre($livre);
+        }
+        return $livres;
     }
 }

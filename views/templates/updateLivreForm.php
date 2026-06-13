@@ -5,15 +5,15 @@
 ?>
 <h2><?php echo $livre->getId() == -1 ? "Création d'un livre" : "Modification les informations" ?></h2>
 
-<form action="index.php" method="post" class="foldedCorner" class="infoLivre">
+<form action="index.php" method="post" enctype="multipart/form-data" class="infoLivre">
     <div class="formGridGauche">
         <img src="./pictures/books/<?php echo $livre->getPhoto(); ?>" style="height:150px;"/>
-        <label for="photo" class="edit-link">
+        <label for="photoLivre" class="edit-link">
             <i class="fi fi-rr-pencil"></i> Modifier la photo
         </label>
 
-        <input type="file" name="photo" id="photo" accept="image/*" required>
-        <button type="submit" >Valider</button>
+        <input type="file" name="photoLivre" id="photoLivre" accept="image/*" >
+
     </div>
 
     <div class="formGridDroit">
@@ -29,8 +29,8 @@
 
         <label for="dispoSelect">Disponibilité</label>
         <select name="dispoSelect" id="dispoSelect">
-        <option value="1">disponible</option>
-        <option value="0">non dispo.</option>
+        <option value="disponible">disponible</option>
+        <option value="non dispo.">non dispo.</option>
         </select>
 
         <input type="hidden" name="action" value="updateLivre">

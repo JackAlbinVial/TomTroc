@@ -44,4 +44,13 @@ class Utils
         return "onclick=\"return confirm('$message');\"";
     }
 
+    /**
+     * Cette methode nettoie les donnée de tout injection SQL et XSS
+     * @param string $request : la donnée à nettoyer
+     * @return string : la donnée propre
+     */
+    public static function clean(string $request): string
+    {
+        return htmlspecialchars($request);
+    }
 }
