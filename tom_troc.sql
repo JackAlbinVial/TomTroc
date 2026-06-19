@@ -16,7 +16,8 @@ PRIMARY KEY (`id`)
 INSERT INTO `user` (`id`, `name`, `login`, `password`, `picture`,`date_creation`) VALUES
 (1, 'nathalire', 'nathalire@mail.com', '$2y$10$OefkCWfcDo.GKgFS2qmFYuITgzdDsrBp67p2.IrJOutZ9ptcsKCb.', 'nathalire.jpg', '2025-06-06 16:29:40'),
 (2, 'Alexlecture', 'Alexlecture@mail.com', '$2y$10$OefkCWfcDo.GKgFS2qmFYuITgzdDsrBp67p2.IrJOutZ9ptcsKCb.', 'Alexlecture.jpg', '2025-06-06 16:29:40'),
-(3, 'Sas634', 'Sas634@mail.com', '$2y$10$OefkCWfcDo.GKgFS2qmFYuITgzdDsrBp67p2.IrJOutZ9ptcsKCb.', 'Sas634.jpg', '2025-06-06 16:29:40');
+(3, 'Sas634', 'Sas634@mail.com', '$2y$10$OefkCWfcDo.GKgFS2qmFYuITgzdDsrBp67p2.IrJOutZ9ptcsKCb.', 'Sas634.jpg', '2025-06-06 16:29:40'),
+(4, 'user', 'user@mail.com', '$2y$10$OefkCWfcDo.GKgFS2qmFYuITgzdDsrBp67p2.IrJOutZ9ptcsKCb.', 'none.png', '2025-06-06 16:29:40');
 
 Drop Table if exists `Livre`;
 Create Table if not exists `Livre` (
@@ -41,10 +42,15 @@ Drop Table if exists `Message`;
 Create Table if not exists `Message` (
 `id` int NOT NULL AUTO_INCREMENT,
 `message` text NOT NULL,
-`disponibilite` varchar(12) NOT NULL,
 `read` boolean NOT NULL,
-`id_emetteur` int references Utilisateur.id,
-`id_receveur` int references Utilisateur.id,
-`date_message` datetime NOT NULL,
+`idEnvoyeur` int references User.id,
+`idReceveur` int references User.id,
+`dateMessage` datetime NOT NULL,
 PRIMARY KEY (`id`)
 );
+
+INSERT INTO `Message` (`id`,`message`,`read`,`idEnvoyeur`,`idReceveur`,`dateMessage`) VALUES
+(1, 'Lorem ipsum dolor sit amet, consectetur .adipiscing elit, sed do eiusmod tempor', true, 4, 2,'2025-08-21 15:44:00'),
+(2, 'Lorem ipsum dolor sit amet, consectetur .adipiscing elit, sed do eiusmod tempor', false, 2, 4,'2025-08-21 15:48:00'),
+(3, 'Lorem ipsum dolor sit amet, consectetur .adipiscing elit, sed do eiusmod tempor', true, 1, 4,'2025-08-21 20:08:00'),
+(4, 'Lorem ipsum dolor sit amet, consectetur .adipiscing elit, sed do eiusmod tempor', true, 3, 4,'2025-08-21 15:08:00');

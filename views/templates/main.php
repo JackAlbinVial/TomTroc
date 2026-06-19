@@ -28,7 +28,7 @@
                 if (! isset($_SESSION['user'])) {
                     echo '<a href="index.php?action=connectionForm">Connexion</a>';
                 } else {
-                    echo '<a href="index.php"> <i class="fi fi-rr-beacon"></i> Messagerie </a>';
+                    echo '<a href="index.php?action=message"> <i class="fi fi-rr-beacon"></i> Messagerie </a>';
                     echo '<a href="index.php?action=userProfile"> <i class="fi fi-rr-user"></i> Mon Compte </a>';
                     echo '<a href="index.php?action=disconnectUser"> Déconnexion </a>';
                 }

@@ -32,7 +32,7 @@
         </div>
         <div class="blocGauche">
             <h3>Vos Information Personnelles</h3>
-            <form action="index.php?action=editUser" method="post" class="foldedCorner">
+            <form action="index.php?action=editUser" method="POST" class="foldedCorner">
                 <div class="formGrid">
                     <label for="login">Adresse email</label>
                     <input type="email" name="login" id="login" value="<?php echo $user->getLogin(); ?>">

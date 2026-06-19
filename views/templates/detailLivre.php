@@ -21,6 +21,6 @@
             <img src="./pictures/users/<?php echo $user->getPicture(); ?>" alt="Image d'un utilisateur">
             <p><?php echo $user->getName(); ?></p>
         </a>
-        <a href="index.php?action=message&id=<?php echo $user->getId() ?>"></a>
+        <a href="index.php?action=message&idSender=<?php echo $user->getId() ?>">lololo</a>
     </div>
 </div>

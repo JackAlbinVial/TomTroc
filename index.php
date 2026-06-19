@@ -88,6 +88,11 @@ try {
             $userController = new UserController();
             $userController->showPublicProfile();
             break;
+
+        case 'message':
+            $messageController = new MessageController();
+            $messageController->showChat();
+            break;
     }
 } catch (Exception $e) {
     echo $e;
