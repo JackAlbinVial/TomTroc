@@ -93,6 +93,11 @@ try {
             $messageController = new MessageController();
             $messageController->showChat();
             break;
+
+        case 'sendMessage':
+            $messageController = new MessageController();
+            $messageController->sendMessage();
+            break;
     }
 } catch (Exception $e) {
     echo $e;

@@ -4,14 +4,31 @@
     </div>
 
 <?php foreach ($conversations as $conversation) {?>
-     <a href="index.php?action=message&idSender=<?php echo $conversation->getIdEnvoyeur() ?>">
+
+<?php
+    if ($conversation->getIdEnvoyeur() == $_SESSION['idUser']) {
+    // Si user connecté a envoyé le dernier message
+    // → l'interlocuteur est le RECEVEUR
+    $nomInterlocuteur   = $conversation->getReceveurName();
+    $photoInterlocuteur = $conversation->getReceveurPicture();
+    $idInterlocuteur    = $conversation->getIdReceveur();
+    } else {
+    // Si c'est l'autre qui a envoyé le dernier message
+    // → l'interlocuteur est l'ENVOYEUR
+    $nomInterlocuteur   = $conversation->getEnvoyeurName();
+    $photoInterlocuteur = $conversation->getEnvoyeurPicture();
+    $idInterlocuteur    = $conversation->getIdEnvoyeur();
+    }
+    ?>
+
+     <a href="index.php?action=message&idSender=<?php echo $idInterlocuteur; ?>">
         <article class="card" style="width: 200px; height: 200px; overflow: hidden;">
             <div class="blocImage">
-                <img src="./pictures/users/<?php echo $conversation->getEnvoyeurPicture(); ?>"
+                <img src="./pictures/users/<?php echo $photoInterlocuteur ?>"
                      style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
             </div>
             <div class="blocNameDate">
-                <h6><?php echo $conversation->getEnvoyeurName(); ?></h6>
+                <h6><?php echo $nomInterlocuteur; ?></h6>
                 <p><?php echo $conversation->getDateMessage()->format('d.m H:i'); ?></p>
             </div>
             <p class="messageGris"><?php echo mb_strimwidth($conversation->getMessage(), 0, 30, '...'); ?></p>
@@ -49,5 +66,14 @@
             <?php }?>
         <?php }?>
     <?php }?>
+
+    <div class="formMessage">
+        <form action="index.php?action=sendMessage" method="POST">
+            <input type="text" name="message" id="message" placeholder="Tapez votre message ici">
+            <input type="hidden" name="interlocutorId" value="<?php echo $interlocuteur->getId(); ?>">
+            <input type="hidden" name="userId" value="<?php echo $_SESSION['idUser'] ?>">
+            <button class="submit">Envoyer</button>
+        </form>
+    </div>
 
 </div>

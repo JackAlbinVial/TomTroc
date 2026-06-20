@@ -5,16 +5,18 @@
 
 class MessageManager extends AbstractEntityManager
 {
-/**
- * Récupère tous les messages et les trie en fonction de l'id du correspondant
- * @param int $idUser : l'id de l'utilisateur connecté
- * @return array : un tableau de messages
- */
+    /**
+     * Récupère tous les messages et les trie en fonction de l'id du correspondant
+     * @param int $idUser : l'id de l'utilisateur connecté
+     * @return array : un tableau de messages
+     */
     public function getAllConversationByIdUser(int $idUser): array
     {
         $sql = "SELECT Message.*,
                 envoyeur.name AS envoyeurName,
-                envoyeur.picture AS envoyeurPicture
+                envoyeur.picture AS envoyeurPicture,
+                receveur.name AS receveurName,
+                receveur.picture AS receveurPicture
                 FROM Message
                 JOIN User AS envoyeur ON Message.idEnvoyeur = envoyeur.id
                 JOIN User AS receveur ON Message.idReceveur = receveur.id
@@ -64,5 +66,23 @@ class MessageManager extends AbstractEntityManager
             $messages[] = new Message($message);
         }
         return $messages;
+    }
+
+    /**
+     * Enregistre des messages dans la bdd.
+     * @param int $idReciever : l'id du correspondant
+     * @param int $idUser : l'id de l'utilisateur connecté
+     * @return void
+     */
+    public function sendMessage(int $idUser, int $idReceveur, string $message): void
+    {
+        $sql = "INSERT INTO `Message` (`message`, `idEnvoyeur`, `idReceveur`, `dateMessage`)
+                VALUES ( :message, :idEnvoyeur, :idReceveur, NOW())";
+
+        $this->db->query($sql, [
+            ':message'    => $message,
+            ':idEnvoyeur' => $idUser,
+            ':idReceveur' => $idReceveur,
+        ]);
     }
 }

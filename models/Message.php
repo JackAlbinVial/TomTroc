@@ -8,7 +8,6 @@ class Message extends AbstractEntity
 {
     //Donnée envoyée à la Bdd
     private string $message        = "";
-    private bool $read             = false;
     private int $idEnvoyeur        = 0;
     private int $idReceveur        = 0;
     private ?DateTime $dateMessage = null;
@@ -16,6 +15,8 @@ class Message extends AbstractEntity
     //Donnée non envoyée à la bdd, pour eviter les doublons
     private string $envoyeurName    = "";
     private string $envoyeurPicture = "";
+    private string $receveurName    = "";
+    private string $receveurPicture = "";
 
     /**
      * Setter pour le message.
@@ -33,24 +34,6 @@ class Message extends AbstractEntity
     public function getMessage(): string
     {
         return $this->message;
-    }
-
-    /**
-     * Setter pour le read.
-     * @param bool $read
-     */
-    public function setRead(bool $read): void
-    {
-        $this->read = $read;
-    }
-
-    /**
-     * Getter pour le read.
-     * @return bool
-     */
-    public function getRead(): bool
-    {
-        return $this->read;
     }
 
     /**
@@ -149,5 +132,41 @@ class Message extends AbstractEntity
     public function getEnvoyeurPicture(): string
     {
         return $this->envoyeurPicture;
+    }
+
+    /**
+     * Setter pour le nom de le receveur.
+     * @param string $receveurName
+     */
+    public function setReceveurName(string $receveurName): void
+    {
+        $this->receveurName = $receveurName;
+    }
+
+    /**
+     * Getter pour le nom de le receveur.
+     * @return string
+     */
+    public function getReceveurName(): string
+    {
+        return $this->receveurName;
+    }
+
+    /**
+     * Setter pour la photo de le receveur.
+     * @param string $receveurPicture
+     */
+    public function setReceveurPicture(string $receveurPicture): void
+    {
+        $this->receveurPicture = $receveurPicture;
+    }
+
+    /**
+     * Getter pour la photo de le receveur.
+     * @return string
+     */
+    public function getReceveurPicture(): string
+    {
+        return $this->receveurPicture;
     }
 }

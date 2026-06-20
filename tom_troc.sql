@@ -42,15 +42,14 @@ Drop Table if exists `Message`;
 Create Table if not exists `Message` (
 `id` int NOT NULL AUTO_INCREMENT,
 `message` text NOT NULL,
-`read` boolean NOT NULL,
 `idEnvoyeur` int references User.id,
 `idReceveur` int references User.id,
 `dateMessage` datetime NOT NULL,
 PRIMARY KEY (`id`)
 );
 
-INSERT INTO `Message` (`id`,`message`,`read`,`idEnvoyeur`,`idReceveur`,`dateMessage`) VALUES
-(1, 'Lorem ipsum dolor sit amet, consectetur .adipiscing elit, sed do eiusmod tempor', true, 4, 2,'2025-08-21 15:44:00'),
-(2, 'Lorem ipsum dolor sit amet, consectetur .adipiscing elit, sed do eiusmod tempor', false, 2, 4,'2025-08-21 15:48:00'),
-(3, 'Lorem ipsum dolor sit amet, consectetur .adipiscing elit, sed do eiusmod tempor', true, 1, 4,'2025-08-21 20:08:00'),
-(4, 'Lorem ipsum dolor sit amet, consectetur .adipiscing elit, sed do eiusmod tempor', true, 3, 4,'2025-08-21 15:08:00');
+INSERT INTO `Message` (`id`,`message`, `idEnvoyeur`,`idReceveur`,`dateMessage`) VALUES
+(1, 'Lorem ipsum dolor sit amet, consectetur .adipiscing elit, sed do eiusmod tempor', 4, 2,'2025-08-21 15:44:00'),
+(2, 'Lorem ipsum dolor sit amet, consectetur .adipiscing elit, sed do eiusmod tempor', 2, 4,'2025-08-21 15:48:00'),
+(3, 'Lorem ipsum dolor sit amet, consectetur .adipiscing elit, sed do eiusmod tempor', 1, 4,'2025-08-21 20:08:00'),
+(4, 'Lorem ipsum dolor sit amet, consectetur .adipiscing elit, sed do eiusmod tempor', 3, 4,'2025-08-21 15:08:00');
