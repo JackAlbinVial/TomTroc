@@ -1,11 +1,55 @@
-/* ---------- logos, header et footer ---------- */
+/* ---------- Général ---------- */
 body {
   padding: 0%;
   margin: 0%;
 }
 
+h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 42px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 1.4;
+  margin: 0 0 20px 0;
+}
+
+.boutonVert {
+  display: inline-block;
+  background-color: #00ac66;
+  color: #ffffff;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 26px 42px;
+  border-radius: 12px;
+}
+
+.boutonBlancVert {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #00ac66;
+  border: 1px solid #00ac66;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 26px 42px;
+  border-radius: 12px;
+}
+
+.greyTxt {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 13px;
+  font-style: italic;
+  color: #a6a6a6;
+  text-align: right;
+  margin: 16px 0 0 0;
+}
+
+/* ---------- logos, header et footer ---------- */
 header {
-  background-color: #f3f1ec;
+  background-color: #f5f3ef;
   width: 100%;
 }
 
@@ -13,7 +57,6 @@ header nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 100%;
   margin: 0 auto;
   padding: 20px 40px;
   font-family: "Inter", Arial, sans-serif;
@@ -83,15 +126,14 @@ footer {
   align-items: center;
   justify-content: flex-end;
   gap: 40px;
-  max-width: 1400px;
   margin: 0 auto;
-  padding: 25px 40px;
+  padding: 25px 0;
 }
 
 footer a,
 footer p {
   text-decoration: none;
-  color: #2b2b2b;
+  color: #292929;
   font-family: "Inter", Arial, sans-serif;
   font-size: 15px;
   margin: 0;
@@ -99,4 +141,184 @@ footer p {
 
 footer .logoTomTroc {
   height: 32px;
+}
+
+/* ---------- Page Accueil ---------- */
+.premierQuart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f3ef;
+  gap: 120px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+
+.premierQuartGauche {
+  flex: 1;
+  max-width: 400px;
+}
+
+.premierQuartText p {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 19px;
+  color: #000000;
+  line-height: 1.2;
+  margin: 0 0 60px 0;
+}
+
+.premierQuartDroit {
+  flex: 1;
+  max-width: 600px;
+}
+
+.imageAccueil1 {
+  width: 100%;
+  height: 800px;
+  object-fit: cover;
+  display: block;
+}
+
+.deuxiemeQuart {
+  background-color: #faf9f7;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.livreAjouter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  margin-bottom: 50px;
+}
+
+.livreAjouter a {
+  text-decoration: none;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  margin-top: 50px;
+}
+
+.card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-content {
+  padding: 20px;
+  text-align: left;
+  flex: 1;
+}
+
+.card-content .greyTxt {
+  text-align: left;
+}
+
+.card-title {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 6px 0;
+}
+
+.card-author {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
+  color: #a6a6a6;
+  margin: 0 0 16px 0;
+}
+
+.troisiemeQuart {
+  width: 100%;
+  background-color: #f5f3ef;
+  padding: 80px 0 0 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.troisiemeQuartText {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 20px;
+  color: #292929;
+  line-height: 1.2;
+  max-width: 500px;
+  margin: 0 auto 50px;
+}
+
+.blocAccueil {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  margin: 0px 300px 40px 300px;
+}
+
+.bloc-content {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 28px 28px;
+  height: 130px;
+  width: 240px;
+}
+
+.bloc-txt p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  color: #292929;
+  line-height: 1.5;
+}
+
+.imageAccueil2 {
+  display: block;
+  width: 100%;
+  height: 310px;
+  object-fit: cover;
+  object-position: center 40%;
+  margin-top: 60px;
+}
+
+.quatriemeQuart {
+  max-width: 100%;
+  background-color: #f5f3ef;
+  padding: 80px 0px 80px 700px;
+  justify-content: center;
+  align-items: center;
+}
+
+.quatriemeQuartText {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 15px;
+  color: #292929;
+  line-height: 1.6;
+  max-width: 360px;
+  margin: 0 0 30px 0;
+}
+
+.sinature {
+  display: flex;
+  align-items: center;
+  gap: 180px;
+}
+
+.sinature .greyTxt {
+  margin: 0;
+}
+
+.imageCoeur {
+  width: 120px;
+  height: auto;
 }
