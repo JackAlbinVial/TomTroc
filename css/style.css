@@ -58,7 +58,7 @@ header nav {
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-  padding: 20px 40px;
+  padding: 20px 220px 20px 220px;
   font-family: "Inter", Arial, sans-serif;
 }
 
@@ -321,4 +321,48 @@ footer .logoTomTroc {
 .imageCoeur {
   width: 120px;
   height: auto;
+}
+
+/* ---------- Page "Nos livres à l'échange" ---------- */
+.blocCentral {
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: #faf9f7;
+  padding-bottom: 70px;
+}
+
+.blocHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 370px 32px 360px;
+}
+
+.blocHead form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 10px 16px;
+  width: 280px;
+}
+
+.blocHead form i {
+  color: #a6a6a6;
+  font-size: 14px;
+}
+
+.blocHead form input[type="text"] {
+  border: none;
+  outline: none;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
+  width: 100%;
+  background: transparent;
+}
+
+.blocHead form input[type="text"]::placeholder {
+  color: #a6a6a6;
 }
