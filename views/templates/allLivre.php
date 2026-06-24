@@ -1,3 +1,9 @@
+<?php
+    /**
+ * Template de la page Nos Livre à l'échange.
+ */
+?>
+
 <div class="blocCentral">
     <div class="blocHead">
         <h2>Nos livres à l’échange</h2>

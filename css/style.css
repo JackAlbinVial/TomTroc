@@ -51,14 +51,16 @@ h2 {
 header {
   background-color: #f5f3ef;
   width: 100%;
+  height: 84px;
 }
 
 header nav {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-  padding: 20px 220px 20px 220px;
+  padding: 0 220px;
   font-family: "Inter", Arial, sans-serif;
 }
 
@@ -121,13 +123,15 @@ header nav {
 footer {
   background-color: #ffffff;
   border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
   width: 100%;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 40px;
-  margin: 0 auto;
-  padding: 25px 0;
+  margin: 0;
+  padding: 16px 0 16px 0;
 }
 
 footer a,
@@ -365,4 +369,95 @@ footer .logoTomTroc {
 
 .blocHead form input[type="text"]::placeholder {
   color: #a6a6a6;
+}
+
+/* ---------- Page Inscription Connection ---------- */
+.connectContainer {
+  display: flex;
+  background-color: #f5f3ef;
+  height: calc(100vh - 158px);
+  gap: 120px;
+  padding: 0 0 0 154px;
+}
+
+.connection-form {
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 80px;
+}
+
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 80%;
+}
+
+.formGrid label {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 13px;
+  color: #a6a6a6;
+  margin-top: 14px;
+}
+
+.formGrid input {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 15px;
+  border: 1px solid #f0f0f0;
+  border-radius: 6px;
+  background-color: #ffffff;
+  padding: 12px 14px;
+  outline: none;
+}
+
+.formGrid button.submit {
+  background-color: #00ac66;
+  color: #ffffff;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 0;
+  margin-top: 24px;
+  cursor: pointer;
+}
+
+.connectRedirect {
+  gap: 4px;
+  margin-top: 20px;
+}
+
+.connection-form p {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
+  color: #2b2b2b;
+  margin: 20px 0 0 0;
+  display: inline;
+}
+
+.connection-form a {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
+  color: #2b2b2b;
+  text-decoration: underline;
+  margin-left: 4px;
+}
+
+.connectContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.2);
+  transform-origin: center;
+}
+
+.connectImage {
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
 }
