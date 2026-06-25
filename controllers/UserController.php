@@ -321,11 +321,6 @@ class UserController
             throw new Exception("Format non autorisé");
         }
 
-        // On vérifie la taille (max 5MB)
-        if ($_FILES['photoLivre']['size'] > 5 * 1024 * 1024) {
-            throw new Exception("Fichier trop volumineux");
-        }
-
         // On génére un nom unique
         $filename   = uniqid() . '_' . basename($_FILES['photoLivre']['name']);
         $uploadDir  = './pictures/books/';
