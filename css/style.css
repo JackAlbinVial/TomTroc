@@ -461,3 +461,109 @@ footer .logoTomTroc {
   height: 100%;
   overflow: hidden;
 }
+
+/* ---------- Page Détail Livre ---------- */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 13px;
+  color: #9a9a9a;
+  background-color: #f5f3ef;
+  padding: 12px 220px;
+}
+
+.breadcrumb a {
+  color: #9a9a9a;
+  text-decoration: none;
+}
+
+.detailLivreContainer {
+  display: flex;
+  background-color: #faf9f7;
+  min-height: calc(100vh - 226px);
+}
+
+.detailLivreGauche {
+  flex: 1;
+  height: calc(100vh - 226px);
+  padding: 0px 0px 200px 0px;
+  overflow: hidden;
+}
+
+.detailLivreGauche img {
+  height: 120vh;
+  padding: 0px 0px 0px 220px;
+  object-fit: cover;
+  transform-origin: center top;
+}
+
+.detailLivreDroit {
+  flex: 1;
+  max-width: 500px;
+  padding: 40px 240px 60px 0px;
+}
+
+.detailLivreDroit hr {
+  border: none;
+  border-top: 1px solid #e5e5e5;
+  max-width: 36px;
+  margin: 0 0 24px 0;
+}
+
+.detailLivreDroit h6 {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #292929;
+  margin: 0 0 12px 0;
+}
+
+.text {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
+  color: #292929;
+  line-height: 1.6;
+  margin: 0 0 48px 0;
+}
+
+.auteur {
+  font-family: "Inter", Arial, sans-serif;
+  color: #a6a6a6;
+}
+
+.proprietaireLink {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 36px;
+  width: 30%;
+  gap: 12px;
+  text-decoration: none;
+  margin-bottom: 80px;
+  padding: 6px;
+}
+
+.proprietaireLink img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.proprietaireLink p {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.boutonVert.fullWidth {
+  display: block;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
