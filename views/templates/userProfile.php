@@ -3,10 +3,8 @@
  * Template de la page profile
  */
 ?>
-
-<h1>Mon Compte </h1>
-
 <div class="Compte">
+    <h2>Mon Compte </h2>
     <div class="upperSection">
         <div class="blocDroit">
             <div class="image">
@@ -14,14 +12,14 @@
 
                 <form action="index.php?action=updateUserPhoto" method="POST" enctype="multipart/form-data" class="photo">
                     <label for="photo" class="edit-link">
-                        <i class="fi fi-rr-pencil"></i>Modifier
+                        <i class="fi fi-rr-pencil"></i>&nbsp;Modifier
                     </label>
                     <input type="file" name="photo" id="photo" accept="image/*" onchange="this.form.submit()" required>
                 </form>
             </div>
 
             <div class="info">
-                <h2><?php echo $user->getName(); ?></h2>
+                <h3><?php echo $user->getName(); ?></h3>
                 <p class="seniority"><?php echo $userDate ?></p>
                 <h6>BIBLIOTHEQUE</h6>
                 <p class="totalLivre">
@@ -30,6 +28,7 @@
                 </p>
             </div>
         </div>
+
         <div class="blocGauche">
             <h3>Vos Information Personnelles</h3>
             <form action="index.php?action=editUser" method="POST" class="foldedCorner">
@@ -65,7 +64,11 @@
                         <td class="col-title"><?php echo $livre->getTitre() ?></td>
                         <td class="col-author"><?php echo $livre->getAuteur() ?></td>
                         <td class="col-description"><?php echo mb_strimwidth($livre->getDescription(), 0, 82, '...') ?></td>
-                        <td class="col-available"><?php echo $livre->getDisponibilite() ?></td>
+                        <td class="col-available">
+                            <span class="badge-dispo <?php echo $livre->getDisponibilite() === 'disponible' ? 'badge-vert' : 'badge-rouge' ?>">
+                                <?php echo $livre->getDisponibilite() ?>
+                            </span>
+                        </td>
                         <td class="col-actions">
                             <a class="submit" id="edit" href="index.php?action=showUpdateBookForm&id=<?php echo $livre->getId() ?>">
                                 <i class="fi fi-rr-pencil"></i>
