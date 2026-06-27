@@ -36,7 +36,7 @@ h6 {
 
 .boutonBlancVert {
   display: inline-block;
-  background-color: #ffffff;
+  background-color: #f5f3ef;
   color: #00ac66;
   border: 1px solid #00ac66;
   font-family: "Inter", Arial, sans-serif;
@@ -713,29 +713,38 @@ footer .logoTomTroc {
   padding: 30px 384px 30px 384px;
 }
 
+.ComptePublic {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  background-color: #faf9f7;
+  padding: 38px 284px 38px 284px;
+}
+
 .upperSection {
   display: flex;
   gap: 40px;
   background-color: #faf9f7;
   margin-bottom: 30px;
 }
-/* --- Bloc gauche : profil photo --- */
+
 .blocDroit {
   flex: 1;
   background-color: #ffffff;
-  border-radius: 10px;
+  border-radius: 22px;
   padding: 40px;
   text-align: center;
 }
 
-.blocDroit .image {
+.image {
   position: relative;
   display: inline-block;
 }
 
-.blocDroit .image img {
+.image img {
   width: 160px;
-  height: 40px;
+  height: 160px;
   border-radius: 80px;
   object-fit: cover;
 }
@@ -795,11 +804,14 @@ footer .logoTomTroc {
   margin: 0;
 }
 
-/* --- Bloc droit : infos personnelles --- */
+.blocDroit .boutonBlancVert {
+  margin-top: 84px;
+}
+
 .blocGauche {
   flex: 1;
   background-color: #ffffff;
-  border-radius: 10px;
+  border-radius: 22px;
   padding: 40px 0px 40px 80px;
 }
 
@@ -856,7 +868,8 @@ footer .logoTomTroc {
 /* --- Tableau des livres --- */
 .lowerSection {
   background-color: #ffffff;
-  border-radius: 12px;
+  border-radius: 22px;
+  overflow: hidden;
 }
 
 .userBooks {
@@ -871,7 +884,7 @@ footer .logoTomTroc {
   letter-spacing: 0.5px;
   color: #9a9a9a;
   text-align: left;
-  padding: 24px 54px 12px 54px;
+  padding: 24px 34px 24px 34px;
   border-bottom: 1px solid #eee;
 }
 
@@ -883,13 +896,17 @@ footer .logoTomTroc {
   font-family: "Inter", Arial, sans-serif;
   font-size: 13px;
   color: #2b2b2b;
-  padding: 14px 20px;
+  padding: 12px 34px 12px 34px;
   vertical-align: middle;
+}
+
+.userBooks tbody {
+  border-radius: 22px;
 }
 
 .col-picture img {
   width: 100px;
-  height: 30px;
+  height: 150px;
   object-fit: cover;
   border-radius: 4px;
   display: block;
@@ -927,11 +944,29 @@ footer .logoTomTroc {
 }
 
 .col-actions a#edit {
-  color: #2b2b2b;
+  color: #6dc5a1;
 }
 
 .col-actions a#delete {
-  color: #c0392b;
+  color: #c56d6d;
+}
+
+.badge-dispo {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.badge-vert {
+  background-color: #6dc5a1;
+}
+
+.badge-rouge {
+  background-color: #c56d6d;
 }
 
 .ajoutLivre {
@@ -946,3 +981,5 @@ footer .logoTomTroc {
   text-decoration: none;
   padding: 16px 0;
 }
+
+/* ---------- Messagerie ---------- */

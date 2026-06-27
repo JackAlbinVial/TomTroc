@@ -8,7 +8,7 @@
     <div class="upperSection">
         <div class="blocDroit">
             <div class="image">
-                <img src="./pictures/users/<?php echo $user->getPicture(); ?>" style="height:150px;"/>
+                <img src="./pictures/users/<?php echo $user->getPicture(); ?>"/>
 
                 <form action="index.php?action=updateUserPhoto" method="POST" enctype="multipart/form-data" class="photo">
                     <label for="photo" class="edit-link">
@@ -19,7 +19,7 @@
             </div>
 
             <div class="info">
-                <h3><?php echo $user->getName(); ?></h3>
+                <h2><?php echo $user->getName(); ?></h2>
                 <p class="seniority"><?php echo $userDate ?></p>
                 <h6>BIBLIOTHEQUE</h6>
                 <p class="totalLivre">
@@ -60,7 +60,7 @@
             <tbody>
                 <?php foreach ($livres as $livre) {?>
                     <tr>
-                        <td class="col-picture"><img src="./pictures/books/<?php echo $livre->getPhoto() ?>" style="height:150px;"/></td>
+                        <td class="col-picture"><img src="./pictures/books/<?php echo $livre->getPhoto() ?>"/></td>
                         <td class="col-title"><?php echo $livre->getTitre() ?></td>
                         <td class="col-author"><?php echo $livre->getAuteur() ?></td>
                         <td class="col-description"><?php echo mb_strimwidth($livre->getDescription(), 0, 82, '...') ?></td>
