@@ -44,7 +44,7 @@
                 if (! isset($_SESSION['user'])) {?>
                         <a href="index.php?action=connectionForm" class="' . navClass('connectionForm') . '">Connexion</a>
                     <?php } else {?>
-                        <a href="index.php?action=message" class="<?php echo navClass('message') ?>"> <i class="fi fi-rr-beacon"></i> Messagerie </a>
+                        <a href="index.php?action=message&idSender=1" class="<?php echo navClass('message') ?>"> <i class="fi fi-rr-beacon"></i> Messagerie </a>
                         <a href="index.php?action=userProfile" class="<?php echo navClass('userProfile') ?>"><i class="fi fi-rr-user"></i> Mon Compte </a>
                         <a href="index.php?action=disconnectUser"> Déconnexion </a>
                     <?php }?>

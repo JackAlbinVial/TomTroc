@@ -7,7 +7,7 @@
     <div class="connection-form">
         <form action="index.php?action=connectUser" method="post" class="foldedCorner">
             <h2>Connexion</h2>
-            <div class="formGrid">
+            <div class="formGridConnect">
                 <label for="login">Adresse email</label>
                 <input type="email" name="login" id="login" required>
                 <label for="password">Mot de passe</label>
