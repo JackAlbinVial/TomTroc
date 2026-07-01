@@ -19,7 +19,12 @@
         <?php foreach ($livres as $livre) {?>
             <a href="index.php?action=detailBook&id=<?php echo $livre->getId() ?>">
                 <article class="card">
-                    <img src="./pictures/books/<?php echo $livre->getPhoto() ?>" alt="Image d'un livre"/>
+                    <div class="cardImage">
+                        <img src="./pictures/books/<?php echo $livre->getPhoto() ?>" alt="Image d'un livre"/>
+                        <span class="col-available badge-dispo <?php echo $livre->getDisponibilite() === 'disponible' ? 'badge-vert' : 'badge-rouge' ?>">
+                            <?php echo $livre->getDisponibilite() ?>
+                        </span>
+                    </div>
                     <div class="card-content">
                         <div class="card-txt">
                             <h3 class="card-title"><?php echo $livre->getTitre() ?></h3>

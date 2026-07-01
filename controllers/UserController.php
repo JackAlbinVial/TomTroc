@@ -310,25 +310,35 @@ class UserController
         $auteur      = Utils::clean($auteur);
         $description = Utils::clean($description);
 
-        // On vérifie qu'il n'y a aucune erreur pour la photo
-        if ($_FILES['photoLivre']['error']) {
-            throw new Exception("Erreur lors du upload");
-        }
+        // On récupère le livre existant pour garder l'ancienne photo par défaut
+        $livreManager = new LivreManager();
+        $ancienLivre  = $livreManager->getLivreById($id);
+        $filename     = $ancienLivre->getPhoto();
 
-        // On vérifier le type de fichier que l'utilisateur tente d'upload
-        $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
-        if (! in_array($_FILES['photoLivre']['type'], $allowedTypes)) {
-            throw new Exception("Format non autorisé");
-        }
+        // On ne traite l'upload QUE si un nouveau fichier a été envoyé
+        if (isset($_FILES['photoLivre']) && $_FILES['photoLivre']['error'] !== UPLOAD_ERR_NO_FILE) {
 
-        // On génére un nom unique
-        $filename   = uniqid() . '_' . basename($_FILES['photoLivre']['name']);
-        $uploadDir  = './pictures/books/';
-        $uploadPath = $uploadDir . $filename;
+            // On vérifie qu'il n'y a aucune erreur pour la photo
+            if ($_FILES['photoLivre']['error']) {
+                var_dump($_FILES['photoLivre']['error']);
+                throw new Exception("Erreur lors du upload");
+            }
 
-        // On déplace le fichier
-        if (! move_uploaded_file($_FILES['photoLivre']['tmp_name'], $uploadPath)) {
-            throw new Exception("Erreur lors de la sauvegarde");
+            // On vérifier le type de fichier que l'utilisateur tente d'upload
+            $allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
+            if (! in_array($_FILES['photoLivre']['type'], $allowedTypes)) {
+                throw new Exception("Format non autorisé");
+            }
+
+            // On génére un nom unique
+            $filename   = uniqid() . '_' . basename($_FILES['photoLivre']['name']);
+            $uploadDir  = './pictures/books/';
+            $uploadPath = $uploadDir . $filename;
+
+            // On déplace le fichier
+            if (! move_uploaded_file($_FILES['photoLivre']['tmp_name'], $uploadPath)) {
+                throw new Exception("Erreur lors de la sauvegarde");
+            }
         }
 
         // On crée l'objet Article.
@@ -343,7 +353,6 @@ class UserController
         ]);
 
         // On ajoute le livre.
-        $livreManager = new LivreManager();
         $livreManager->addOrUpdateLivre($livre);
 
         // On redirige vers la page d'administration.

@@ -1,7 +1,21 @@
 /* ---------- Général ---------- */
+
+html,
 body {
-  padding: 0%;
-  margin: 0%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  flex: 1;
 }
 
 h2 {
@@ -54,6 +68,58 @@ h6 {
   color: #a6a6a6;
   text-align: right;
   margin: 16px 0 0 0;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  margin-top: 50px;
+}
+
+.cardImage {
+  position: relative;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.cardImage .badge-dispo {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.card-content {
+  padding: 20px;
+  text-align: left;
+  flex: 1;
+}
+
+.card-content .greyTxt {
+  text-align: left;
+}
+
+.card-title {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 6px 0;
+}
+
+.card-author {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
+  color: #a6a6a6;
+  margin: 0 0 16px 0;
 }
 
 /* ---------- logos, header et footer ---------- */
@@ -210,48 +276,6 @@ footer .logoTomTroc {
   text-decoration: none;
 }
 
-.card {
-  background-color: #ffffff;
-  border-radius: 0 0 12px 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  width: 260px;
-  margin-top: 50px;
-}
-
-.card img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  display: block;
-}
-
-.card-content {
-  padding: 20px;
-  text-align: left;
-  flex: 1;
-}
-
-.card-content .greyTxt {
-  text-align: left;
-}
-
-.card-title {
-  font-family: "Inter", Arial, sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin: 0 0 6px 0;
-}
-
-.card-author {
-  font-family: "Inter", Arial, sans-serif;
-  font-size: 14px;
-  color: #a6a6a6;
-  margin: 0 0 16px 0;
-}
-
 .troisiemeQuart {
   width: 100%;
   background-color: #f5f3ef;
@@ -307,7 +331,7 @@ footer .logoTomTroc {
 .quatriemeQuart {
   max-width: 100%;
   background-color: #f5f3ef;
-  padding: 80px 0px 80px 700px;
+  padding: 80px 0px 80px 800px;
   justify-content: center;
   align-items: center;
 }
@@ -341,7 +365,13 @@ footer .logoTomTroc {
   max-width: 100%;
   margin: 0 auto;
   background-color: #faf9f7;
-  padding-bottom: 70px;
+}
+
+.blocCentral .livreAjouter {
+  margin: auto;
+  flex-wrap: wrap;
+  max-width: 1184px;
+  padding-bottom: 40px;
 }
 
 .blocHead {
@@ -443,7 +473,7 @@ footer .logoTomTroc {
 .connection-form p {
   font-family: "Inter", Arial, sans-serif;
   font-size: 14px;
-  color: #2b2b2b;
+  color: #292929;
   margin: 20px 0 0 0;
   display: inline;
 }
@@ -496,16 +526,17 @@ footer .logoTomTroc {
 
 .detailLivreGauche {
   flex: 1;
-  height: calc(100vh - 226px);
-  padding: 0px 0px 200px 0px;
+  height: 120vh;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .detailLivreGauche img {
-  height: 120vh;
-  padding: 0px 0px 0px 220px;
+  width: 600px;
+  height: 100%;
   object-fit: cover;
-  transform-origin: center top;
 }
 
 .detailLivreDroit {
@@ -557,7 +588,7 @@ footer .logoTomTroc {
   font-family: "Inter", Arial, sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #292929;
   margin: 0;
 }
 
@@ -895,7 +926,7 @@ footer .logoTomTroc {
 .userBooks tbody td {
   font-family: "Inter", Arial, sans-serif;
   font-size: 13px;
-  color: #2b2b2b;
+  color: #292929;
   padding: 12px 34px 12px 34px;
   vertical-align: middle;
 }
@@ -992,7 +1023,7 @@ footer .logoTomTroc {
 }
 
 .messagerieListe {
-  width: 300px;
+  width: 324px;
   background-color: #faf9f7;
   overflow-y: auto;
 }
@@ -1008,7 +1039,7 @@ footer .logoTomTroc {
   width: auto;
 }
 
-.messagerieListe .card {
+.messagerieListe .conv {
   display: flex;
   flex-direction: row;
   background-color: #faf9f7;
@@ -1016,10 +1047,11 @@ footer .logoTomTroc {
   border-radius: 0px;
   gap: 10px;
   margin: 0;
-  padding: 12px 0 12px 0;
+  padding: 12px 0 12px 24px;
 }
 
-.messagerieListe .card:hover {
+.messagerieListe .conv:hover,
+.messagerieListe .conv-active {
   background-color: #ffffff;
 }
 
@@ -1048,7 +1080,7 @@ footer .logoTomTroc {
   font-family: "Inter", Arial, sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #292929;
   margin: 0;
 }
 
@@ -1096,7 +1128,7 @@ footer .logoTomTroc {
   font-family: "Inter", Arial, sans-serif;
   font-size: 15px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #292929;
   margin: 0;
 }
 
@@ -1157,13 +1189,26 @@ footer .logoTomTroc {
 .blocMessageText p {
   font-family: "Inter", Arial, sans-serif;
   font-size: 14px;
-  color: #2b2b2b;
+  color: #292929;
   line-height: 1.5;
   padding: 14px 18px;
   margin: 0;
   max-width: 400px;
   display: inline-block;
   text-align: left;
+}
+
+.chatEmpty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatEmpty p {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
+  color: #9a9a9a;
 }
 
 /* --- Formulaire d'envoi --- */

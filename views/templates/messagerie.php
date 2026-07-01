@@ -18,7 +18,7 @@
                 }
                 ?>
             <a href="index.php?action=message&idSender=<?php echo $idInterlocuteur; ?>">
-                <article class="card">
+                <article class="conv <?php echo($interlocuteur && $interlocuteur->getId() == $idInterlocuteur) ? 'conv-active' : '' ?>">
                     <div class="blocImage">
                         <img src="./pictures/users/<?php echo $photoInterlocuteur ?>"/>
                     </div>
@@ -40,7 +40,6 @@
                 <img src="./pictures/users/<?php echo $interlocuteur->getPicture(); ?>"/>
                 <h6><?php echo $interlocuteur->getName(); ?></h6>
             </div>
-        <?php }?>
 
         <div class="chatMessages">
             <?php if (! empty($messages)) {?>
@@ -78,5 +77,10 @@
             </form>
         </div>
     </div>
+    <?php } else {?>
+        <div class="chatEmpty">
+            <p>Sélectionnez une conversation pour commencer à discuter.</p>
+        </div>
+    <?php }?>
 
 </div>

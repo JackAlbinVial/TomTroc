@@ -9,7 +9,7 @@
 
 <div class="detailLivreContainer">
     <div class="detailLivreGauche">
-        <img src="./pictures/books/<?php echo $livre->getPhoto(); ?>"/>
+        <img src="./pictures/books/<?php echo $livre->getPhoto(); ?>" alt="Image d'un livre"/>
     </div>
     <div class="detailLivreDroit">
         <h1><?php echo $livre->getTitre() ?></h1>

@@ -7,7 +7,7 @@
     <div class="connection-form">
         <form action="index.php?action=subscribeUser" method="post" class="foldedCorner">
             <h2>Inscription</h2>
-            <div class="formGrid">
+            <div class="formGridConnect">
                 <label for="name">Pseudo</label>
                 <input type="text" name="name" id="name" required>
                 <label for="login">Adresse email</label>
